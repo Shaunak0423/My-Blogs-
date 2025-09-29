@@ -6,26 +6,13 @@ import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 // import { isLoggedIn, removeToken } from "./auth";
 import { AuthContext } from "./Common/AuthContext";
+import Navbar from "./Components/Navbar";
 
 function App() {
   const {user, Logout} = useContext(AuthContext)
   return (
     <Router>
-      <nav>
-        <Link to="/">All Blogs</Link>
-        {user && <Link to="/my">My Blogs</Link>}
-        {!user ? (
-          <>
-            <Link to="/signup">Signup</Link>
-            <Link to="/login">Login</Link>
-          </>
-        ) : (
-          <button onClick={() => { Logout(); window.location.href = "/"; }}>
-            Logout
-          </button>
-        )}
-      </nav>
-
+      <Navbar/>
       <Routes>
         <Route path="/" element={<AllBlogs />} />
         <Route path="/my" element={user ? <MyBlogs /> : <Login />} />

@@ -12,11 +12,26 @@ function Login() {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  try {
     const res = await axios.post("http://127.0.0.1:8000/api/users/login/", form);
-    login(res.data.user, res.data.access);
-    navigate("/");
-  };
+
+    const userData = res.data.user || null;
+    const token = res.data.access;
+    console.log(userData)
+
+    if (token) {
+      login(userData, token);
+      navigate("/");
+    } else {
+      alert("Login failed: no token returned");
+    }
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    alert("Invalid credentials or server error");
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit}>

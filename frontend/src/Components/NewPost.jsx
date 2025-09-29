@@ -8,8 +8,8 @@ function NewPost({ onPostCreated }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
+    try {
+      const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     if (image) {
@@ -24,6 +24,10 @@ function NewPost({ onPostCreated }) {
     setContent("");
     setImage(null);
     onPostCreated();
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 
   return (

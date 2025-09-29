@@ -1,11 +1,17 @@
 import api from "../Common/axiosConfig";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../Common/AuthContext";
 
 export default function AllBlogs() {
+  const {user} = useContext(AuthContext)
   const [posts, setPosts] = useState([]);
 
+  console.log(user)
+
   useEffect(() => {
-    api.get("posts/").then((res) => setPosts(res.data));
+    api.get("posts/").then((res) => setPosts(res.data)).catch((e)=> {
+      console.log(e)
+    });
   }, []);
 
   return (
