@@ -7,6 +7,7 @@ import Login from "./Pages/Login";
 // import { isLoggedIn, removeToken } from "./auth";
 import { AuthContext } from "./Common/AuthContext";
 import Navbar from "./Components/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const {user, Logout} = useContext(AuthContext)

@@ -1,0 +1,28 @@
+.all_blogs_main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0px;
+    gap: 20px;
+}
+
+.blog_content{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    align-items: center;
+    width: 40%;
+}
+
+.read_more_button{
+    width: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 1s;
+    background-color: rgb(192, 110, 177);
+    color: #fff;
+    border: 1px solid rgb(192, 110, 177);
+}

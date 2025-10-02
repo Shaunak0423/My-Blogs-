@@ -23,7 +23,7 @@ export default function MyBlogs() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>📝 My Blogs</h2>
       <NewPost onPostCreated={fetchMyPosts} />
       {myPosts.length>0 ? (myPosts.map((p) => (

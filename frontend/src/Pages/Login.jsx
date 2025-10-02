@@ -3,6 +3,7 @@ import axios from "axios";
 // import { setToken } from "../auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Common/AuthContext";
+import '../Styles/login.css'
 
 function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -34,12 +35,22 @@ function Login() {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="container">
+      <div className="login_form_container">
+    <form onSubmit={handleSubmit} className="login_form">
       <h2>Login</h2>
-      <input name="username" placeholder="Username" onChange={handleChange} />
-      <input type="password" name="password" placeholder="Password" onChange={handleChange} />
-      <button type="submit">Login</button>
+      <div className="lofi_inputs_labels">
+        <label>User Name</label>
+      <input name="username" placeholder="Username" onChange={handleChange} className="login_input_fields" />
+      </div>
+      <div className="lofi_inputs_labels">
+        <label>Password</label>
+      <input type="password" name="password" placeholder="Password" onChange={handleChange} className="login_input_fields" />
+      </div>
+      <button type="submit" className="login_button">Login</button>
     </form>
+    </div>
+    </div>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../Common/axiosConfig";
+import {Container} from 'react-bootstrap'
 
 function NewPost({ onPostCreated }) {
   const [title, setTitle] = useState("");

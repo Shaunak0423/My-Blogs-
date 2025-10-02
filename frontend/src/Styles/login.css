@@ -1,0 +1,39 @@
+.login_form_container{
+    display: flex;
+    justify-content: center;
+    padding: 40px 0px;
+}
+
+.login_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 30%;
+    padding: 20px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.lofi_inputs_labels{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.login_button{
+    width: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 1s;
+    background-color: rgb(192, 110, 177);
+    color: #fff;
+    border: 1px solid rgb(192, 110, 177);
+}
+
+.login_input_fields{
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+}

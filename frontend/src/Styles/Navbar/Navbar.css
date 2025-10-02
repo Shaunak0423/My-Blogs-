@@ -1,4 +1,19 @@
 .nav_bar_main{
     display: flex;
     justify-content: space-between;
+    padding: 20px;
+    background: lightcoral;
+    align-items: baseline;
+}
+
+.navlinks_navbar{
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+}
+
+.nav_link_items{
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
 }

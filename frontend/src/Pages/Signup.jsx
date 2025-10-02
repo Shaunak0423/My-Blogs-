@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../Styles/signup.css'
 
 function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -13,13 +14,28 @@ function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="container">
+    <div className="signup_main_container">
+    <form onSubmit={handleSubmit} className="signup_form_main">
       <h2>Signup</h2>
-      <input name="username" placeholder="Username" onChange={handleChange} />
-      <input name="email" placeholder="Email" onChange={handleChange} />
-      <input type="password" name="password" placeholder="Password" onChange={handleChange} />
-      <button type="submit">Signup</button>
+      <div className="label_input">
+      <label>User Name:</label>
+      <input name="username" placeholder="Enter Your Username" onChange={handleChange} className="signup_input" />
+      </div>
+      <div className="label_input">
+      <label>Email:</label>
+      <input name="email" placeholder="Email" onChange={handleChange}  className="signup_input" />
+      </div>
+      <div className="label_input">
+      <label>Password:</label>
+      <input type="password" name="password" placeholder="Password" onChange={handleChange}  className="signup_input" />
+      </div>
+      
+      <button type="submit" className="signup_button">Signup</button>
+      
     </form>
+    </div>
+    </div>
   );
 }
 
