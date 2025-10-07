@@ -1,23 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Common/AuthContext';
 import { Link } from 'react-router-dom';
 import '../Styles/Navbar/Navbar.css'
+import { FaBars, FaTimes } from "react-icons/fa";
 
 function Navbar() {
     const {user , logout} = useContext(AuthContext)
     console.log(user)
 
-    const handleScroll = () => 
-{
+    const [isOpen, setIsOpen] = useState(false);
 
-  if (window.scrollY > 0) {
-    document.getElementById('navbar_content_mobile').style.boxShadow = '0 2px 4px rgb(0 0 0 / 69%)';
-    document.getElementById('navbar_content_mobile').classList.add('header_main_link_div');
-} else {
-  document.getElementById('header_main_div_id').style.boxShadow = 'none';
-  document.getElementById('header_main_div_id').classList.remove('header_main_link_div');
-}
-}
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
     <div className='nav_bar_main'>
@@ -44,6 +40,29 @@ function Navbar() {
       
           </div>
     </div>
+
+    <div className='menu_icon' onClick={toggleNavbar}>
+          {isOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
+        </div>
+
+     <div className={`mobile_nav ${isOpen ? 'open' : ''}`}>
+        <nav className='mobile_nav_links'>
+          <Link to="/" onClick={toggleNavbar}>All Blogs</Link>
+          {user && <Link to="/my" onClick={toggleNavbar}>My Blogs</Link>}
+          {user && <p>User: {user.username}</p>}
+          {!user && (
+            <>
+              <Link to="/signup" onClick={toggleNavbar}>Signup</Link>
+              <Link to="/login" onClick={toggleNavbar}>Login</Link>
+            </>
+          )}
+          {user && (
+            <button onClick={() => { logout(); window.location.href = "/"; }}>
+              Logout
+            </button>
+          )}
+        </nav>
+      </div>
 
 
     {/* <div className='nav_bar_main_mobile'>

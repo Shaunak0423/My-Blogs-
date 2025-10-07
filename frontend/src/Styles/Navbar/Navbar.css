@@ -1,19 +1,89 @@
-.nav_bar_main{
+.nav_bar_main {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: lightcoral;
+  align-items: center;
+  position: relative;
+}
+
+.navlinks_navbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav_link_items {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0px;
+}
+
+.menu_icon {
+  display: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* 🔹 MOBILE NAVBAR */
+.mobile_nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100vh;
+  background: lightcoral;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  transition: left 1s ease;
+  z-index: 999;
+  top: 50px;
+}
+
+.mobile_nav.open {
+  left: 0;
+  top: 50px;
+}
+
+.mobile_nav_links {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.mobile_nav_links a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.mobile_nav_links button {
+  margin-top: 20px;
+  background: white;
+  color: lightcoral;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 🔹 RESPONSIVE STYLES */
+@media only screen and (max-width: 500px) {
+
+    .nav_bar_main{
+        display: none;
+    }
+  .navlinks_navbar {
+    display: none;
+  }
+  .menu_icon {
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
     background: lightcoral;
-    align-items: baseline;
-}
-
-.navlinks_navbar{
-    display: flex;
-    gap: 20px;
-    align-items: baseline;
-}
-
-.nav_link_items{
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
+    height: 50px;
+    align-items: center;
+    padding: 10px;
+    z-index: 9;
+  }
 }

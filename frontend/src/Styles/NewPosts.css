@@ -1,34 +1,22 @@
-.signup_main_container{
-    display: flex;
-    justify-content: center;
-    padding: 40px 0px;
-}
-
-.signup_form_main{
+.newPoste_form{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: 30%;
     padding: 20px;
     box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
-    width: 30%;
 }
 
-.label_input{
+.newPosts_label_input{
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
 }
 
-.signup_input{
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.signup_button{
+.newPosts_form_button{
     width: 150px;
     padding: 10px;
     border-radius: 8px;
@@ -38,8 +26,14 @@
     border: 1px solid rgb(192, 110, 177);
 }
 
-@media only screen and (max-width:500px) {
-    .signup_form_main{
-        width: 100%;
-    }
+.newPosts_form_button:hover{
+    background-color: inherit;
+    border: 1px solid rgb(192, 110, 177);
+    color: rgb(192, 110, 177);
+}
+
+.newPosts_form_inputs{
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
 }
