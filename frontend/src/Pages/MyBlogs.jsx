@@ -68,13 +68,14 @@ export default function MyBlogs() {
 
         {myPosts.length > 0 ? (
           myPosts.map((p) => (
-            <div key={p.id} className="border p-3 my-2">
+            <div key={p.id} className="my_posts_container">
               {
                 console.log(p.image)
               }
-              <img src={p.image} alt='Blog Image' />
+              <img src={p.image.startsWith("http") ? p.image : `http://127.0.0.1:8000${p.image}`} alt="Blog" className="my_blog_image" />
               <h3>{p.title}</h3>
               <p>{p.content}</p>
+              <div className="myblogbuttoncontainer">
               <Button variant="primary" size="sm" onClick={() => handleEditClick(p)}>
                 Edit
               </Button>
@@ -86,13 +87,14 @@ export default function MyBlogs() {
               >
                 Delete
               </Button>
+              </div>
             </div>
           ))
         ) : (
           <p>No posts yet — add a post!</p>
         )}
 
-        <Modal show={showEditModal} onHide={handleCloseModal} centered>
+        <Modal show={showEditModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
             <Modal.Title>Edit Post</Modal.Title>
           </Modal.Header>
