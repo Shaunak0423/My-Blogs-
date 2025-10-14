@@ -71,8 +71,8 @@
 }
 
 .all_blogs_content_para{
-    width: 100%;
-    text-align: left;
+    width: 70%;
+    text-align: center;
     font-size: 20px;
 }
 
@@ -96,6 +96,8 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 30px;
+    align-items: baseline;
 }
 
 @media only screen and (max-width:500px) {
@@ -115,5 +117,15 @@
     .all_blogs_model_image{
         width: 100%;
         height: auto;
+    }
+
+    .authorAndCreatedAtDiv{
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        padding: 0px;
+    }
+    .all_blogs_content_para{
+        width: 100%;
     }
 }

@@ -13,28 +13,34 @@ function NewPost({ onPostCreated }) {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("content", content);
-  if (image) {
-    formData.append("image", image);
+  if(title === '' || content === ""){
+    alert("Please enter title and content")
+    return false
   }
+  else
+  {
+        const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      if (image) {
+        formData.append("image", image);
+      }
 
-  console.log([...formData]); // 👈 check what's being sent
 
-  try {
-    await api.post("posts/", formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setTitle("");
-    setContent("");
-    setImage(null);
-    onPostCreated();
-  } catch (error) {
-    console.log(error);
-  }
+      try {
+        await api.post("posts/", formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setTitle("");
+        setContent("");
+        setImage(null);
+        onPostCreated();
+      } catch (error) {
+        console.log(error);
+      }
+    }
 };
 
   return (

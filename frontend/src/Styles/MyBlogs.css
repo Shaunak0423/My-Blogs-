@@ -28,6 +28,30 @@
 .myblogbuttoncontainer{
     display: flex;
     justify-content: space-between;
+    width: 100%;
+}
+
+.modal_class_myblogs{
+    display: flex !important;
+    justify-content: center !important;
+    padding: 40px 0px !important;
+}
+
+.delete_button_myblogs{
+    width: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(192, 110, 177, 0.3);
+    color: #fcfcfc;
+    border: 1px solid rgba(192, 110, 177, 0.3);
+    font-weight: bold;
+    transition: 1s;
+}
+
+.delete_button_myblogs:hover{
+    background-color: #fcfcfc;
+    color: rgba(192, 110, 177, 0.3);
+    border: 1px solid rgba(192, 110, 177, 0.3);
 }
 
 @media only screen and (max-width:500px) {
@@ -37,5 +61,9 @@
 
     .my_blog_image{
     width: 100%;
+}
+
+.modal_class_myblogs{
+    width: 100% !important;
 }
 }

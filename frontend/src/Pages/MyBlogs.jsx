@@ -4,6 +4,8 @@ import NewPost from "../Components/NewPost";
 import api from "../Common/axiosConfig";
 import { AuthContext } from "../Common/AuthContext";
 import "../Styles/MyBlogs.css";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
 
 export default function MyBlogs() {
   const [myPosts, setMyPosts] = useState([]);
@@ -11,6 +13,7 @@ export default function MyBlogs() {
   const [currentPost, setCurrentPost] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
+  const [image , setImage] = useState(null)
   const { user } = useContext(AuthContext);
 
   const fetchMyPosts = () => {
@@ -25,33 +28,51 @@ export default function MyBlogs() {
   }, []);
 
   const deletePost = async (id) => {
-    try {
-      await api.delete(`posts/${id}/`);
-      fetchMyPosts();
-    } catch (error) {
-      console.log("Error deleting post:", error);
-    }
-  };
+  const confirmed = window.confirm("Are you sure you want to delete this post?");
+
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+    await api.delete(`posts/${id}/`);
+    fetchMyPosts();
+  } catch (error) {
+    console.log("Error deleting post:", error);
+  }
+};
 
   const handleEditClick = (post) => {
     setCurrentPost(post);
     setEditTitle(post.title);
     setEditContent(post.content);
+    setImage(post.image)
     setShowEditModal(true);
   };
 
   const handleEditSave = async () => {
-    try {
-      await api.put(`posts/${currentPost.id}/`, {
-        title: editTitle,
-        content: editContent,
-      });
-      setShowEditModal(false);
-      fetchMyPosts();
-    } catch (error) {
-      console.log("Error updating post:", error);
+  try {
+    const formData = new FormData();
+    formData.append("title", editTitle);
+    formData.append("content", editContent);
+
+    if (image instanceof File) {
+      formData.append("image", image);
     }
-  };
+
+    await api.put(`posts/${currentPost.id}/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    setShowEditModal(false);
+    fetchMyPosts();
+  } catch (error) {
+    console.log("Error updating post:", error.response?.data || error);
+  }
+};
+
 
   const handleCloseModal = () => {
     setShowEditModal(false);
@@ -72,21 +93,19 @@ export default function MyBlogs() {
               {
                 console.log(p.image)
               }
-              <img src={p.image.startsWith("http") ? p.image : `http://127.0.0.1:8000${p.image}`} alt="Blog" className="my_blog_image" />
+              <img src={p.image.startsWith("http") ? p.image : `${process.env.REACT_APP_BACKEND_URL}${p.image}`} alt="Blog" className="my_blog_image" />
               <h3>{p.title}</h3>
               <p>{p.content}</p>
               <div className="myblogbuttoncontainer">
-              <Button variant="primary" size="sm" onClick={() => handleEditClick(p)}>
-                Edit
-              </Button>
-              <Button
-                variant="danger"
-                size="sm"
-                className="ms-2"
+              <button className="delete_button_myblogs" onClick={() => handleEditClick(p)}>
+                Edit <FiEdit/>
+              </button>
+              <button
+              className="delete_button_myblogs"
                 onClick={() => deletePost(p.id)}
               >
-                Delete
-              </Button>
+                Delete <RiDeleteBin6Line/>
+              </button>
               </div>
             </div>
           ))
@@ -94,7 +113,7 @@ export default function MyBlogs() {
           <p>No posts yet — add a post!</p>
         )}
 
-        <Modal show={showEditModal} onHide={handleCloseModal}>
+        <Modal show={showEditModal} onHide={handleCloseModal} className="modal_class_myblogs">
           <Modal.Header closeButton>
             <Modal.Title>Edit Post</Modal.Title>
           </Modal.Header>
@@ -118,6 +137,13 @@ export default function MyBlogs() {
                   onChange={(e) => setEditContent(e.target.value)}
                 />
               </Form.Group>
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files[0])}
+                className="newPosts_form_inputs"
+              />
             </Form>
           </Modal.Body>
           <Modal.Footer>

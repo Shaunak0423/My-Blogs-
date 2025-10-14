@@ -3,6 +3,7 @@ import { AuthContext } from "../Common/AuthContext";
 import { Modal, Button } from "react-bootstrap";
 import '../Styles/AllBlogs.css';
 import { TiPen } from "react-icons/ti";
+import { TbClockCheck } from "react-icons/tb";
 
 export default function AllBlogs() {
   const { user } = useContext(AuthContext);
@@ -34,8 +35,8 @@ export default function AllBlogs() {
           <h3>{p.title}</h3>
           <p>{p.content.substring(0, 100)}...</p>
           <div className="authorAndCreatedAtDiv">
-          <small className="author_name_all_blogs">Author:  {p.author_username}  <TiPen className="authorNameIcon"/></small>
-          <p>Created At</p>
+          <small className="author_name_all_blogs">Author :  {p.author_username}  <TiPen className="authorNameIcon"/></small>
+          <p className="author_name_all_blogs">Created At : {p.created_at.split("T")[0]} <TbClockCheck className="authorNameIcon"/></p>
           </div>
           <br />
           <button className="read_more_button" onClick={() => handleShow(p)}>
@@ -53,7 +54,7 @@ export default function AllBlogs() {
           <p className="all_blogs_content_para">{selectedPost?.content}</p>
           <div className="authorAndCreatedAtDiv">
           <small className="author_name_all_blogs">Author:  {selectedPost?.author_username}  <TiPen className="authorNameIcon"/></small>
-          <p>Created At</p>
+          <p className="author_name_all_blogs">Created At: {selectedPost?.created_at.split("T")[0]} <TbClockCheck className="authorNameIcon"/></p>
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -62,6 +63,9 @@ export default function AllBlogs() {
           </Button>
         </Modal.Footer>
       </Modal>
+      {
+        console.log(posts)
+      }
     </div>
   );
 }

@@ -4,7 +4,9 @@
   padding: 20px;
   background: lightcoral;
   align-items: center;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .navlinks_navbar {
@@ -26,7 +28,6 @@
   cursor: pointer;
 }
 
-/* 🔹 MOBILE NAVBAR */
 .mobile_nav {
   position: fixed;
   top: 0;
@@ -39,12 +40,12 @@
   padding: 40px 20px;
   transition: left 1s ease;
   z-index: 999;
-  top: 50px;
+  top: 65px;
 }
 
 .mobile_nav.open {
   left: 0;
-  top: 50px;
+  top: 65px;
 }
 
 .mobile_nav_links {
@@ -69,6 +70,30 @@
   cursor: pointer;
 }
 
+.logout_button_navbar{
+  width: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(192, 110, 177, 0.3);
+  border: 1px solid rgba(192, 110, 177, 0.3);
+  color: #fcfcfc;
+  font-weight: 600;
+  font-size: 20px;
+  transition: 1s;
+}
+
+.logout_button_navbar:hover{
+  background-color: #fcfcfc;
+  color: rgba(192, 110, 177, 0.3);
+  border: 1px solid rgba(192, 110, 177, 0.3);
+}
+
+.navbar_logo{
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #fcfcfc;
+}
+
 /* 🔹 RESPONSIVE STYLES */
 @media only screen and (max-width: 500px) {
 
@@ -81,9 +106,13 @@
   .menu_icon {
     display: flex;
     background: lightcoral;
-    height: 50px;
+    height: 70px;
     align-items: center;
     padding: 10px;
-    z-index: 9;
+    /* z-index: 9; */
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 }
